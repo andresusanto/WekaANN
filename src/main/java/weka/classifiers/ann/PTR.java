@@ -31,10 +31,12 @@ import java.util.Enumeration;
 
 public class PTR extends Classifier implements OptionHandler, WeightedInstancesHandler {
     ////// DATA YANG BERKAITAN DENGAN MODEL
-    private float learningRate = 0.0f;
+
+    private float learningRate = 0.1f;
     private int maxIteration = 30;
     private float weights[];
-    private boolean outputNominal = false;
+    private int activationFunction = 0; // 0 = SIGN, 1 = STEP, 2 = SIGMOID
+    private double stepThreshold = 0;
     ///////////////////////////////////////
 
 
@@ -42,236 +44,197 @@ public class PTR extends Classifier implements OptionHandler, WeightedInstancesH
     private static final long serialVersionUID = -5990607817048210779L;
 
 
-    private double calculateResult(Instance instance){
+    private double calculateError(Instances instances){
+        double tmp_error = 0;
+        int sumInstances = instances.numInstances();
+
+        for (int i = 0; i < sumInstances ; i++){
+            tmp_error += Math.pow( instances.instance(i).classValue() - classifyInstance(instances.instance(i)) , 2);
+        }
+        return tmp_error / 2;
+    }
+
+    public void buildClassifier(Instances instances) throws Exception {
+        int i = 0; int it = 0;
+        int sumInstances = instances.numInstances();
+        int sumAttributes = instances.numAttributes();
+
+        if (sumInstances > 0) {
+            weights = new float[sumAttributes];
+            double curError = 1;
+
+            while (it < maxIteration && curError > 0) {
+                double out = classifyInstance(instances.instance(i));
+                double correction = instances.instance(i).classValue() - out;
+
+                System.out.printf("Iterasi %d: (TARGET: %f, OUT: %f)\n", i, instances.instance(i).classValue(), out);
+
+
+                System.out.printf("   NEW WEIGHT: ");
+
+                for (int j = 0; j < sumAttributes; j++){
+                    if (j != instances.instance(i).classIndex()){
+                        weights[j] = weights[j] + (float)(correction * instances.instance(i).value(j) * learningRate);
+                        System.out.printf(" %f,", weights[j]);
+                    }
+                }
+                curError = calculateError(instances);
+                System.out.printf("\n   Error: %f\n\n", curError);
+
+                i = (++i) % sumInstances;
+                it++;
+            }
+        }
+    }
+
+
+    public double classifyInstance(Instance instance){
         int numAttr = instance.numAttributes();
         double sigma = 0;
-        for (int i = 0; i <= numAttr; i++){
+        for (int i = 0; i < numAttr; i++){
             if (i != instance.classIndex()){
                 sigma += weights[i] * instance.value(i);
             }
         }
-    }
 
-    public void buildClassifier(Instances instances) throws Exception {
-        int i = 0;
-        int sumInstances = instances.numInstances();
-        int sumAttributes = instances.numAttributes();
-        int classIndex = instances.classIndex();
+        switch (activationFunction){
+            case 0: // fungsi sign
+                if (sigma > 0) return 1;
+                else if (sigma < 0) return -1;
+                else return 0;
 
-        if (sumInstances > 0) {
-            float tmp_weight[] = new float[sumAttributes];
-            weights = new float[sumAttributes];
-
-            while (i < maxIteration) {
-                //float
-                i = (++i) % sumInstances;
-            }
+            case 1: // fungsi step
+                if (sigma > stepThreshold)
+                    return 1;
+                else
+                    return 0;
+            default: // fungsi sigmoid
+                return (1/( 1 + Math.pow(Math.E,(-1* sigma))));
         }
     }
 
-    public double[] distributionForInstance(Instance i) throws Exception {
-		return null;
-	}
-  
 
-
+/*
     public Enumeration listOptions() {
 
-    Vector newVector = new Vector(14);
+        Vector newVector = new Vector(14);
 
-    newVector.addElement(new Option(
-          "\tLearning Rate for the backpropagation algorithm.\n"
-          +"\t(Value should be between 0 - 1, Default = 0.3).",
-          "L", 1, "-L <learning rate>"));
-    newVector.addElement(new Option(
-          "\tMomentum Rate for the backpropagation algorithm.\n"
-          +"\t(Value should be between 0 - 1, Default = 0.2).",
-          "M", 1, "-M <momentum>"));
-    newVector.addElement(new Option(
-          "\tNumber of epochs to train through.\n"
-          +"\t(Default = 500).",
-          "N", 1,"-N <number of epochs>"));
-    newVector.addElement(new Option(
-          "\tPercentage size of validation set to use to terminate\n"
-          + "\ttraining (if this is non zero it can pre-empt num of epochs.\n"
-          +"\t(Value should be between 0 - 100, Default = 0).",
-          "V", 1, "-V <percentage size of validation set>"));
-    newVector.addElement(new Option(
-          "\tThe value used to seed the random number generator\n"
-          + "\t(Value should be >= 0 and and a long, Default = 0).",
-          "S", 1, "-S <seed>"));
-    newVector.addElement(new Option(
-          "\tThe consequetive number of errors allowed for validation\n"
-          + "\ttesting before the netwrok terminates.\n"
-          + "\t(Value should be > 0, Default = 20).",
-          "E", 1, "-E <threshold for number of consequetive errors>"));
-    newVector.addElement(new Option(
-              "\tGUI will be opened.\n"
-          +"\t(Use this to bring up a GUI).",
-          "G", 0,"-G"));
-    newVector.addElement(new Option(
-              "\tAutocreation of the network connections will NOT be done.\n"
-          +"\t(This will be ignored if -G is NOT set)",
-          "A", 0,"-A"));
-    newVector.addElement(new Option(
-              "\tA NominalToBinary filter will NOT automatically be used.\n"
-          +"\t(Set this to not use a NominalToBinary filter).",
-          "B", 0,"-B"));
-    newVector.addElement(new Option(
-          "\tThe hidden layers to be created for the network.\n"
-          + "\t(Value should be a list of comma separated Natural \n"
-          + "\tnumbers or the letters 'a' = (attribs + classes) / 2, \n"
-          + "\t'i' = attribs, 'o' = classes, 't' = attribs .+ classes)\n"
-          + "\tfor wildcard values, Default = a).",
-          "H", 1, "-H <comma seperated numbers for nodes on each layer>"));
-    newVector.addElement(new Option(
-              "\tNormalizing a numeric class will NOT be done.\n"
-          +"\t(Set this to not normalize the class if it's numeric).",
-          "C", 0,"-C"));
-    newVector.addElement(new Option(
-              "\tNormalizing the attributes will NOT be done.\n"
-          +"\t(Set this to not normalize the attributes).",
-          "I", 0,"-I"));
-    newVector.addElement(new Option(
-              "\tReseting the network will NOT be allowed.\n"
-          +"\t(Set this to not allow the network to reset).",
-          "R", 0,"-R"));
-    newVector.addElement(new Option(
-              "\tLearning rate decay will occur.\n"
-          +"\t(Set this to cause the learning rate to decay).",
-          "D", 0,"-D"));
+        newVector.addElement(new Option(
+              "\tActivation Function that is used by PTR.\n"
+              +"\t(Value should be between 0 - 2, 0 = SIGN, 1 = STEP, 2 = SIGMOID).",
+              "F", 1, "-F <activation function>"));
+        newVector.addElement(new Option(
+              "\tMaximum Iteration that is used by PTR.\n"
+              +"\t(Default 30).",
+              "M", 1, "-M <max iteration>"));
+        newVector.addElement(new Option(
+              "\tThreshold that is used by step function (if its used).\n"
+              +"\t(Default = 0).",
+              "T", 1,"-T <step threshold>"));
+        newVector.addElement(new Option(
+                "\tLearning Rate.\n"
+                +"\t(Default = 0.1).",
+                "L", 1,"-L <learning rate>"));
 
+        return newVector.elements();
+    }*/
 
-    return newVector.elements();
+    public String maxIterationTipText() {
+        return "Maximum Iteration that is used by PTR. Default = 30";
     }
 
-  
-    // OPSI UNTUK KUSTOMISASI
+    public String activationFunctionTipText() {
+        return "Activation Function that is used by PTR. (Value should be between 0 - 2, 0 = SIGN, 1 = STEP, 2 = SIGMOID).";
+    }
+
+    public String thresholdTipText() {
+        return "Learning rate that is used by the algorithm. Default = 0";
+    }
+
+    public String learningRateTipText() {
+        return "Learning rate that is used by the algorithm. Default = 0.1";
+    }
+
+    public void setLearningRate(float a) {
+        learningRate = a;
+    }
+
+    public float getLearningRate() {
+        return learningRate;
+    }
+
+    public void setStepThreshold(double a) {
+        stepThreshold = a;
+    }
+
+    public double getStepThreshold() {
+        return stepThreshold;
+    }
+
+    public void setActivationFunction(int a) {
+        activationFunction = a;
+    }
+
+    public int getActivationFunction() {
+        return activationFunction;
+    }
+
+    public void setMaxIteration(int a) {
+        maxIteration = a;
+    }
+
+    public int getMaxIteration() {
+        return maxIteration;
+    }
+
+    /* OPSI UNTUK KUSTOMISASI
     public void setOptions(String[] options) throws Exception {
-    //the defaults can be found here!!!!
-    /*String learningString = Utils.getOption('L', options);
-    if (learningString.length() != 0) {
-      setLearningRate((new Double(learningString)).doubleValue());
-    } else {
-      setLearningRate(0.3);
-    }
-    String momentumString = Utils.getOption('M', options);
-    if (momentumString.length() != 0) {
-      setMomentum((new Double(momentumString)).doubleValue());
-    } else {
-      setMomentum(0.2);
-    }
-    String epochsString = Utils.getOption('N', options);
-    if (epochsString.length() != 0) {
-      setTrainingTime(Integer.parseInt(epochsString));
-    } else {
-      setTrainingTime(500);
-    }
-    String valSizeString = Utils.getOption('V', options);
-    if (valSizeString.length() != 0) {
-      setValidationSetSize(Integer.parseInt(valSizeString));
-    } else {
-      setValidationSetSize(0);
-    }
-    String seedString = Utils.getOption('S', options);
-    if (seedString.length() != 0) {
-      setSeed(Integer.parseInt(seedString));
-    } else {
-      setSeed(0);
-    }
-    String thresholdString = Utils.getOption('E', options);
-    if (thresholdString.length() != 0) {
-      setValidationThreshold(Integer.parseInt(thresholdString));
-    } else {
-      setValidationThreshold(20);
-    }
-    String hiddenLayers = Utils.getOption('H', options);
-    if (hiddenLayers.length() != 0) {
-      setHiddenLayers(hiddenLayers);
-    } else {
-      setHiddenLayers("a");
-    }
-    if (Utils.getFlag('G', options)) {
-      setGUI(true);
-    } else {
-      setGUI(false);
-    } //small note. since the gui is the only option that can change the other
-    //options this should be set first to allow the other options to set
-    //properly
-    if (Utils.getFlag('A', options)) {
-      setAutoBuild(false);
-    } else {
-      setAutoBuild(true);
-    }
-    if (Utils.getFlag('B', options)) {
-      setNominalToBinaryFilter(false);
-    } else {
-      setNominalToBinaryFilter(true);
-    }
-    if (Utils.getFlag('C', options)) {
-      setNormalizeNumericClass(false);
-    } else {
-      setNormalizeNumericClass(true);
-    }
-    if (Utils.getFlag('I', options)) {
-      setNormalizeAttributes(false);
-    } else {
-      setNormalizeAttributes(true);
-    }
-    if (Utils.getFlag('R', options)) {
-      setReset(false);
-    } else {
-      setReset(true);
-    }
-    if (Utils.getFlag('D', options)) {
-      setDecay(true);
-    } else {
-      setDecay(false);
-    }
+        String learningString = Utils.getOption('L', options);
+        if (learningString.length() != 0) {
+            learningRate = new Float(learningString).floatValue();
+        } else {
+            learningRate = 0.1f;
+        }
 
-    Utils.checkForRemainingOptions(options);*/
+        String activationString = Utils.getOption('F', options);
+        if (activationString.length() != 0) {
+            activationFunction = new Integer(activationString).intValue();
+        } else {
+            activationFunction = 0;
+        }
+
+        String maxiterString = Utils.getOption('M', options);
+        if (maxiterString.length() != 0) {
+            maxIteration = new Integer(maxiterString).intValue();
+        } else {
+            maxIteration = 30;
+        }
+
+
+        String thresholdString = Utils.getOption('T', options);
+        if (thresholdString.length() != 0) {
+            stepThreshold = new Integer(thresholdString).intValue();
+        } else {
+            stepThreshold = 0;
+        }
+
+        Utils.checkForRemainingOptions(options);
     }
 
   
     public String [] getOptions() {
+        String [] options = new String [8];
+        int current = 0;
+        options[current++] = "-L"; options[current++] = "" + learningRate;
+        options[current++] = "-F"; options[current++] = "" + activationFunction;
+        options[current++] = "-M"; options[current++] = "" + maxIteration;
+        options[current++] = "-T"; options[current++] = "" + stepThreshold;
 
-    /*String [] options = new String [21];
-    int current = 0;
-    options[current++] = "-L"; options[current++] = "" + getLearningRate();
-    options[current++] = "-M"; options[current++] = "" + getMomentum();
-    options[current++] = "-N"; options[current++] = "" + getTrainingTime();
-    options[current++] = "-V"; options[current++] = "" +getValidationSetSize();
-    options[current++] = "-S"; options[current++] = "" + getSeed();
-    options[current++] = "-E"; options[current++] =""+getValidationThreshold();
-    options[current++] = "-H"; options[current++] = getHiddenLayers();
-    if (getGUI()) {
-      options[current++] = "-G";
-    }
-    if (!getAutoBuild()) {
-      options[current++] = "-A";
-    }
-    if (!getNominalToBinaryFilter()) {
-      options[current++] = "-B";
-    }
-    if (!getNormalizeNumericClass()) {
-      options[current++] = "-C";
-    }
-    if (!getNormalizeAttributes()) {
-      options[current++] = "-I";
-    }
-    if (!getReset()) {
-      options[current++] = "-R";
-    }
-    if (getDecay()) {
-      options[current++] = "-D";
-    }
-
-
-    while (current < options.length) {
-      options[current++] = "";
-    }
-    return options;*/ return null;
-    }
+        while (current < options.length) {
+          options[current++] = "";
+        }
+        return options;
+    }*/
 
 
     public Capabilities getCapabilities() {
