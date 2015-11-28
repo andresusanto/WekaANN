@@ -31,17 +31,17 @@
       <file leaf-file-name="MLP.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/ann/MLP.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.41689372" vertical-offset="1190" max-vertical-offset="4556">
-              <caret line="88" column="77" selection-start-line="88" selection-start-column="77" selection-end-line="88" selection-end-column="77" />
+            <state vertical-scroll-proportion="0.8188011" vertical-offset="1065" max-vertical-offset="4556">
+              <caret line="98" column="18" selection-start-line="98" selection-start-column="18" selection-end-line="98" selection-end-column="18" />
               <folding>
-                <element signature="e#0#8852#0" expanded="true" />
+                <element signature="e#0#8951#0" expanded="true" />
                 <element signature="imports" expanded="true" />
-                <element signature="e#3945#3946#0" expanded="true" />
-                <element signature="e#4004#4005#0" expanded="true" />
-                <element signature="e#6445#6446#0" expanded="true" />
-                <element signature="e#6480#6481#0" expanded="true" />
-                <element signature="e#8467#8468#0" expanded="true" />
-                <element signature="e#8513#8514#0" expanded="true" />
+                <element signature="e#4044#4045#0" expanded="true" />
+                <element signature="e#4103#4104#0" expanded="true" />
+                <element signature="e#6544#6545#0" expanded="true" />
+                <element signature="e#6579#6580#0" expanded="true" />
+                <element signature="e#8566#8567#0" expanded="true" />
+                <element signature="e#8612#8613#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -609,12 +609,12 @@
       <workItem from="1448599628504" duration="2934000" />
       <workItem from="1448603918016" duration="5216000" />
       <workItem from="1448627893717" duration="2755000" />
-      <workItem from="1448713222424" duration="10013000" />
+      <workItem from="1448713222424" duration="12984000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20918000" />
+    <option name="totallyTimeSpent" value="23889000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="936" extended-state="6" />
@@ -674,14 +674,14 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="5117">
           <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
           <folding>
-            <element signature="e#0#8852#0" expanded="true" />
+            <element signature="e#0#8951#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#3945#3946#0" expanded="true" />
-            <element signature="e#4004#4005#0" expanded="true" />
-            <element signature="e#6445#6446#0" expanded="true" />
-            <element signature="e#6480#6481#0" expanded="true" />
-            <element signature="e#8467#8468#0" expanded="true" />
-            <element signature="e#8513#8514#0" expanded="true" />
+            <element signature="e#4044#4045#0" expanded="true" />
+            <element signature="e#4103#4104#0" expanded="true" />
+            <element signature="e#6544#6545#0" expanded="true" />
+            <element signature="e#6579#6580#0" expanded="true" />
+            <element signature="e#8566#8567#0" expanded="true" />
+            <element signature="e#8612#8613#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -714,14 +714,14 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="5117">
           <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
           <folding>
-            <element signature="e#0#8852#0" expanded="true" />
+            <element signature="e#0#8951#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#3945#3946#0" expanded="true" />
-            <element signature="e#4004#4005#0" expanded="true" />
-            <element signature="e#6445#6446#0" expanded="true" />
-            <element signature="e#6480#6481#0" expanded="true" />
-            <element signature="e#8467#8468#0" expanded="true" />
-            <element signature="e#8513#8514#0" expanded="true" />
+            <element signature="e#4044#4045#0" expanded="true" />
+            <element signature="e#4103#4104#0" expanded="true" />
+            <element signature="e#6544#6545#0" expanded="true" />
+            <element signature="e#6579#6580#0" expanded="true" />
+            <element signature="e#8566#8567#0" expanded="true" />
+            <element signature="e#8612#8613#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -754,14 +754,14 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="5117">
           <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
           <folding>
-            <element signature="e#0#8852#0" expanded="true" />
+            <element signature="e#0#8951#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#3945#3946#0" expanded="true" />
-            <element signature="e#4004#4005#0" expanded="true" />
-            <element signature="e#6445#6446#0" expanded="true" />
-            <element signature="e#6480#6481#0" expanded="true" />
-            <element signature="e#8467#8468#0" expanded="true" />
-            <element signature="e#8513#8514#0" expanded="true" />
+            <element signature="e#4044#4045#0" expanded="true" />
+            <element signature="e#4103#4104#0" expanded="true" />
+            <element signature="e#6544#6545#0" expanded="true" />
+            <element signature="e#6579#6580#0" expanded="true" />
+            <element signature="e#8566#8567#0" expanded="true" />
+            <element signature="e#8612#8613#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -876,17 +876,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/ann/MLP.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41689372" vertical-offset="1190" max-vertical-offset="4556">
-          <caret line="88" column="77" selection-start-line="88" selection-start-column="77" selection-end-line="88" selection-end-column="77" />
+        <state vertical-scroll-proportion="0.8188011" vertical-offset="1065" max-vertical-offset="4556">
+          <caret line="98" column="18" selection-start-line="98" selection-start-column="18" selection-end-line="98" selection-end-column="18" />
           <folding>
-            <element signature="e#0#8852#0" expanded="true" />
+            <element signature="e#0#8951#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#3945#3946#0" expanded="true" />
-            <element signature="e#4004#4005#0" expanded="true" />
-            <element signature="e#6445#6446#0" expanded="true" />
-            <element signature="e#6480#6481#0" expanded="true" />
-            <element signature="e#8467#8468#0" expanded="true" />
-            <element signature="e#8513#8514#0" expanded="true" />
+            <element signature="e#4044#4045#0" expanded="true" />
+            <element signature="e#4103#4104#0" expanded="true" />
+            <element signature="e#6544#6545#0" expanded="true" />
+            <element signature="e#6579#6580#0" expanded="true" />
+            <element signature="e#8566#8567#0" expanded="true" />
+            <element signature="e#8612#8613#0" expanded="true" />
           </folding>
         </state>
       </provider>

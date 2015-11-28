@@ -77,26 +77,26 @@ public class MLP extends Classifier implements OptionHandler, WeightedInstancesH
             while (it < maxIteration && curError > 0) {
                 double out = classifyInstance(instances.instance(i));
 
-                System.out.printf("Iterasi %d: (TARGET: %f, OUT: %f)\n", i, instances.instance(i).classValue(), out);
-                System.out.printf("   NEW WEIGHT: ");
+                //System.out.printf("Iterasi %d: (TARGET: %f, OUT: %f)\n", i, instances.instance(i).classValue(), out);
+                //System.out.printf("   NEW WEIGHT: ");
 
                 for (int k = 0 ; k < hiddenPerceptrons; k++){
                     for (int j = 0 ; j < sumAttributes; j++){
                         if (j != instances.classIndex()) {
-                            double delta_in = (instances.instance(i).classValue() - out) * out * (1 - out) * weights_out[k] * working_h[k]  * (1 - working_h[k]) * instances.instance(i).value(j);
+                            double delta_in = -(instances.instance(i).classValue() - out) * out * (1.0f - out) * weights_out[k] * working_h[k]  * (1 - working_h[k]) * instances.instance(i).value(j);
                             weights[k][j] -= learningRate * delta_in;
 
-                            System.out.printf("\n    w(%d,%d) = %f\n,", k, j, weights_out[k]);
+                            //System.out.printf("\n    W(%d,%d) = %f\n", k, j, weights[k][j]);
                         }
                     }
 
-                    double delta = (instances.instance(i).classValue() - out) * out * (1-out) * working_h[k];
+                    double delta = -(instances.instance(i).classValue() - out) * out * (1.0f-out) * working_h[k];
                     weights_out[k] -= learningRate * delta;
-
+                    //System.out.printf("\n    W(%d,OUT) = %f\n", k, weights_out[k]);
                 }
 
                 curError = calculateError(instances);
-                System.out.printf("\n   Error: %f\n\n", curError);
+                //System.out.printf("\n   Error: %f\n\n", curError);
 
                 i = (++i) % sumInstances;
                 it++;
@@ -126,8 +126,8 @@ public class MLP extends Classifier implements OptionHandler, WeightedInstancesH
                     sigma += weights[i][j] * instance.value(j);
             }
 
-            working_h[i] = weights_out[i] * sigmoid(sigma);
-            sigma_out += working_h[i];
+            working_h[i] = sigmoid(sigma);
+            sigma_out += weights_out[i] * working_h[i];
         }
 
         return sigmoid(sigma_out);
