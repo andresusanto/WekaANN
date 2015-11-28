@@ -2,7 +2,7 @@
  *    MLP.java
  *    Copyright (C) 2015 by Andre Susanto, Adhika Sigit, Michael Alexander
  *    
- *    Implementation of Multi Layer Perceptron Classifier Algorithm
+ *    Implementation of PERCEPTRON TRAINING RULE Classifier Algorithm
  */
 
 package weka.classifiers.ann;

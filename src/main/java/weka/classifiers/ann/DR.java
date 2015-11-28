@@ -1,8 +1,8 @@
 /*
- *    MLP.java
+ *    DR.java
  *    Copyright (C) 2015 by Andre Susanto, Adhika Sigit, Michael Alexander
  *    
- *    Implementation of Multi Layer Perceptron Classifier Algorithm
+ *    Implementation of DELTA RULE Classifier Algorithm
  */
 
 package weka.classifiers.ann;
@@ -30,6 +30,7 @@ public class DR extends Classifier implements OptionHandler, WeightedInstancesHa
     private int maxIteration = 30;
     private float weights[];
     private int activationFunction = 0; // 0 = SIGN, 1 = STEP, 2 = SIGMOID
+    private int mode = 0; // 0 = BATCH, 1 = INCREMENTAL
     private double stepThreshold = 0;
     ///////////////////////////////////////
     private NominalToBinary nominalToBinary = new NominalToBinary();
@@ -60,31 +61,50 @@ public class DR extends Classifier implements OptionHandler, WeightedInstancesHa
         normalize.setInputFormat(instances);
         instances = Filter.useFilter(instances, normalize);
 
-        int i = 0; int it = 0;
+        int i = 0; int it = 0; int iterateTo;
         int sumInstances = instances.numInstances();
         int sumAttributes = instances.numAttributes();
 
         if (sumInstances > 0) {
+            float tmp_weights[] = new float[sumAttributes];
             weights = new float[sumAttributes];
             double curError = 1;
 
-            while (it < maxIteration && curError > 0) {
-                double out = classifyInstance(instances.instance(i));
+            if (mode == 0){
+                iterateTo = maxIteration * sumInstances;
+            }else{
+                iterateTo = maxIteration;
+            }
+
+            while (it < iterateTo && curError > 0) {
+                double out = classify(instances.instance(i));
                 double correction = instances.instance(i).classValue() - out;
 
-                System.out.printf("Iterasi %d: (TARGET: %f, OUT: %f)\n", i, instances.instance(i).classValue(), out);
-
-
+                System.out.printf("Iterasi %d, data %d: (TARGET: %f, OUT: %f)\n", it, i, instances.instance(i).classValue(), out);
                 System.out.printf("   NEW WEIGHT: ");
 
                 for (int j = 0; j < sumAttributes; j++){
                     if (j != instances.instance(i).classIndex()){
-                        weights[j] = weights[j] + (float)(correction * instances.instance(i).value(j) * learningRate);
-                        System.out.printf(" %f,", weights[j]);
+                        if (mode == 1) {
+                            weights[j] = weights[j] + (float) (correction * instances.instance(i).value(j) * learningRate);
+                            System.out.printf(" %f,", weights[j]);
+                        }else{
+                            tmp_weights[j] = tmp_weights[j] + (float) (correction * instances.instance(i).value(j) * learningRate);
+                        }
                     }
                 }
                 curError = calculateError(instances);
                 System.out.printf("\n   Error: %f\n\n", curError);
+
+                if (i == sumInstances - 1 && mode == 0){
+                    System.out.printf("   UPDATE WEIGHT: ");
+
+                    for (int j = 0; j < sumAttributes; j++){
+                        if (j != instances.instance(i).classIndex()){
+                            weights[j] = weights[j] + tmp_weights[j];
+                        }
+                    }
+                }
 
                 i = (++i) % sumInstances;
                 it++;
@@ -92,8 +112,7 @@ public class DR extends Classifier implements OptionHandler, WeightedInstancesHa
         }
     }
 
-
-    public double classifyInstance(Instance _instance) throws Exception{
+    private double classify(Instance _instance) throws Exception{
         Instance instance;
 
         nominalToBinary.input(_instance);
@@ -108,6 +127,13 @@ public class DR extends Classifier implements OptionHandler, WeightedInstancesHa
                 sigma += weights[i] * instance.value(i);
             }
         }
+
+        return sigma;
+    }
+
+
+    public double classifyInstance(Instance _instance) throws Exception{
+        double sigma = classify(_instance);
 
         switch (activationFunction){
             case 0: // fungsi sign
@@ -146,7 +172,10 @@ public class DR extends Classifier implements OptionHandler, WeightedInstancesHa
                 "\tLearning Rate.\n"
                 +"\t(Default = 0.1).",
                 "L", 1,"-L <learning rate>"));
-
+        newVector.addElement(new Option(
+                "\tUpdate option (INCREMENTAL or BATCH).\n"
+                        +"\t(Default = BATCH, 0 = BATCH, 1 = INCREMENTAL).",
+                "O", 1,"-O <update option>"));
         return newVector.elements();
     }
 
@@ -198,6 +227,10 @@ public class DR extends Classifier implements OptionHandler, WeightedInstancesHa
         return maxIteration;
     }
 
+    public int getUpdateOption(){ return  mode; }
+
+    public void setUpdateOption(int a) { mode = a; }
+
     // OPSI UNTUK KUSTOMISASI
     public void setOptions(String[] options) throws Exception {
         String learningString = Utils.getOption('L', options);
@@ -229,17 +262,25 @@ public class DR extends Classifier implements OptionHandler, WeightedInstancesHa
             stepThreshold = 0;
         }
 
+        String updateString = Utils.getOption('O', options);
+        if (updateString.length() != 0) {
+            mode = new Integer(updateString).intValue();
+        } else {
+            mode = 0;
+        }
+
         Utils.checkForRemainingOptions(options);
     }
 
   
     public String [] getOptions() {
-        String [] options = new String [8];
+        String [] options = new String [10];
         int current = 0;
         options[current++] = "-L"; options[current++] = "" + learningRate;
         options[current++] = "-F"; options[current++] = "" + activationFunction;
         options[current++] = "-M"; options[current++] = "" + maxIteration;
         options[current++] = "-T"; options[current++] = "" + stepThreshold;
+        options[current++] = "-O"; options[current++] = "" + mode;
 
         while (current < options.length) {
           options[current++] = "";
