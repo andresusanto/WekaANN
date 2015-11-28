@@ -1,5 +1,5 @@
 /*
- *    MLP.java
+ *    PTR.java
  *    Copyright (C) 2015 by Andre Susanto, Adhika Sigit, Michael Alexander
  *    
  *    Implementation of PERCEPTRON TRAINING RULE Classifier Algorithm

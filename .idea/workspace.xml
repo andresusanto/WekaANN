@@ -28,28 +28,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MLP.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MLP.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/ann/MLP.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="5117">
-              <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
-              <folding />
+            <state vertical-scroll-proportion="0.41689372" vertical-offset="1190" max-vertical-offset="4556">
+              <caret line="88" column="77" selection-start-line="88" selection-start-column="77" selection-end-line="88" selection-end-column="77" />
+              <folding>
+                <element signature="e#0#8852#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#3945#3946#0" expanded="true" />
+                <element signature="e#4004#4005#0" expanded="true" />
+                <element signature="e#6445#6446#0" expanded="true" />
+                <element signature="e#6480#6481#0" expanded="true" />
+                <element signature="e#8467#8468#0" expanded="true" />
+                <element signature="e#8513#8514#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PTR.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/ann/PTR.java">
+      <file leaf-file-name="DeltaRule.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/ann/DeltaRule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.09103079" vertical-offset="0" max-vertical-offset="4658">
-              <caret line="4" column="49" selection-start-line="0" selection-start-column="0" selection-end-line="294" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#6114#6115#0" expanded="true" />
-                <element signature="e#6152#6153#0" expanded="true" />
-                <element signature="e#6345#6346#0" expanded="true" />
-                <element signature="e#6380#6381#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
+              <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -57,8 +60,8 @@
       <file leaf-file-name="DR.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/ann/DR.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="5542">
-              <caret line="82" column="86" selection-start-line="82" selection-start-column="86" selection-end-line="82" selection-end-column="86" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="737" max-vertical-offset="5542">
+              <caret line="80" column="36" selection-start-line="80" selection-start-column="36" selection-end-line="80" selection-end-column="70" />
               <folding>
                 <element signature="e#0#10677#0" expanded="true" />
                 <element signature="e#6523#6524#0" expanded="true" />
@@ -96,16 +99,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IBk.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/lazy/IBk.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="7358" max-vertical-offset="17408">
-              <caret line="495" column="37" selection-start-line="495" selection-start-column="28" selection-end-line="495" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="Git.Settings">
@@ -115,8 +108,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/java/weka/classifiers/rules/ZeroR.java" />
-        <option value="$PROJECT_DIR$/src/main/java/weka/classifiers/ann/PTR.java" />
         <option value="$PROJECT_DIR$/src/main/java/weka/classifiers/ann/DR.java" />
+        <option value="$PROJECT_DIR$/src/main/java/weka/classifiers/ann/PTR.java" />
+        <option value="$PROJECT_DIR$/src/main/java/weka/classifiers/ann/MLP.java" />
       </list>
     </option>
   </component>
@@ -615,12 +609,12 @@
       <workItem from="1448599628504" duration="2934000" />
       <workItem from="1448603918016" duration="5216000" />
       <workItem from="1448627893717" duration="2755000" />
-      <workItem from="1448713222424" duration="4796000" />
+      <workItem from="1448713222424" duration="10013000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15701000" />
+    <option name="totallyTimeSpent" value="20918000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="936" extended-state="6" />
@@ -679,7 +673,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="5117">
           <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="e#0#8852#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#3945#3946#0" expanded="true" />
+            <element signature="e#4004#4005#0" expanded="true" />
+            <element signature="e#6445#6446#0" expanded="true" />
+            <element signature="e#6480#6481#0" expanded="true" />
+            <element signature="e#8467#8468#0" expanded="true" />
+            <element signature="e#8513#8514#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -688,6 +691,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4913">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="e#0#9034#0" expanded="true" />
             <element signature="imports" expanded="true" />
             <element signature="e#6114#6115#0" expanded="true" />
             <element signature="e#6152#6153#0" expanded="true" />
@@ -709,7 +713,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="5117">
           <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="e#0#8852#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#3945#3946#0" expanded="true" />
+            <element signature="e#4004#4005#0" expanded="true" />
+            <element signature="e#6445#6446#0" expanded="true" />
+            <element signature="e#6480#6481#0" expanded="true" />
+            <element signature="e#8467#8468#0" expanded="true" />
+            <element signature="e#8513#8514#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -718,6 +731,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6171">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="e#0#9034#0" expanded="true" />
             <element signature="imports" expanded="true" />
             <element signature="e#6114#6115#0" expanded="true" />
             <element signature="e#6152#6153#0" expanded="true" />
@@ -739,7 +753,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="5117">
           <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="e#0#8852#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#3945#3946#0" expanded="true" />
+            <element signature="e#4004#4005#0" expanded="true" />
+            <element signature="e#6445#6446#0" expanded="true" />
+            <element signature="e#6480#6481#0" expanded="true" />
+            <element signature="e#8467#8468#0" expanded="true" />
+            <element signature="e#8513#8514#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -748,6 +771,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5542">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="e#0#9034#0" expanded="true" />
             <element signature="imports" expanded="true" />
             <element signature="e#6114#6115#0" expanded="true" />
             <element signature="e#6152#6153#0" expanded="true" />
@@ -779,9 +803,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/ann/PTR.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.44712183" vertical-offset="193" max-vertical-offset="4658">
+          <caret line="31" column="34" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#9034#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#6114#6115#0" expanded="true" />
+            <element signature="e#6152#6153#0" expanded="true" />
+            <element signature="e#6345#6346#0" expanded="true" />
+            <element signature="e#6380#6381#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/ann/DeltaRule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
+          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/lazy/IBk.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="7358" max-vertical-offset="17408">
+        <state vertical-scroll-proportion="-0.8724227" vertical-offset="8276" max-vertical-offset="17408">
           <caret line="495" column="37" selection-start-line="495" selection-start-column="28" selection-end-line="495" selection-end-column="37" />
           <folding />
         </state>
@@ -789,8 +836,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/ann/DR.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="5542">
-          <caret line="82" column="86" selection-start-line="82" selection-start-column="86" selection-end-line="82" selection-end-column="86" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="737" max-vertical-offset="5542">
+          <caret line="80" column="36" selection-start-line="80" selection-start-column="36" selection-end-line="80" selection-end-column="70" />
           <folding>
             <element signature="e#0#10677#0" expanded="true" />
             <element signature="e#6523#6524#0" expanded="true" />
@@ -829,22 +876,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/ann/MLP.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5117">
-          <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/ann/PTR.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.09103079" vertical-offset="0" max-vertical-offset="4658">
-          <caret line="4" column="49" selection-start-line="0" selection-start-column="0" selection-end-line="294" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.41689372" vertical-offset="1190" max-vertical-offset="4556">
+          <caret line="88" column="77" selection-start-line="88" selection-start-column="77" selection-end-line="88" selection-end-column="77" />
           <folding>
+            <element signature="e#0#8852#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#6114#6115#0" expanded="true" />
-            <element signature="e#6152#6153#0" expanded="true" />
-            <element signature="e#6345#6346#0" expanded="true" />
-            <element signature="e#6380#6381#0" expanded="true" />
+            <element signature="e#3945#3946#0" expanded="true" />
+            <element signature="e#4004#4005#0" expanded="true" />
+            <element signature="e#6445#6446#0" expanded="true" />
+            <element signature="e#6480#6481#0" expanded="true" />
+            <element signature="e#8467#8468#0" expanded="true" />
+            <element signature="e#8513#8514#0" expanded="true" />
           </folding>
         </state>
       </provider>
