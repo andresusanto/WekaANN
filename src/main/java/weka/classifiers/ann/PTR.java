@@ -8,43 +8,40 @@
 package weka.classifiers.ann;
 
 import weka.classifiers.Classifier;
-import weka.classifiers.functions.neural.LinearUnit;
-import weka.classifiers.functions.neural.NeuralConnection;
-import weka.classifiers.functions.neural.NeuralNode;
-import weka.classifiers.functions.neural.SigmoidUnit;
 import weka.core.Capabilities;
-import weka.core.FastVector;
 import weka.core.Instance;
 import weka.core.Instances;
 import weka.core.Option;
 import weka.core.OptionHandler;
-import weka.core.RevisionHandler;
 import weka.core.RevisionUtils;
 import weka.core.Utils;
 import weka.core.WeightedInstancesHandler;
 import weka.core.Capabilities.Capability;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.NominalToBinary;
+import weka.filters.unsupervised.attribute.Normalize;
 
 import java.util.Vector;
 import java.util.Enumeration;
 
 public class PTR extends Classifier implements OptionHandler, WeightedInstancesHandler {
     ////// DATA YANG BERKAITAN DENGAN MODEL
-
     private float learningRate = 0.1f;
     private int maxIteration = 30;
     private float weights[];
     private int activationFunction = 0; // 0 = SIGN, 1 = STEP, 2 = SIGMOID
     private double stepThreshold = 0;
     ///////////////////////////////////////
+    private NominalToBinary nominalToBinary = new NominalToBinary();
+    private Normalize normalize = new Normalize();
+    //////////////////////////////////////
 
 
     // untuk serialisasi
     private static final long serialVersionUID = -5990607817048210779L;
 
 
-    private double calculateError(Instances instances){
+    private double calculateError(Instances instances) throws Exception{
         double tmp_error = 0;
         int sumInstances = instances.numInstances();
 
@@ -54,7 +51,15 @@ public class PTR extends Classifier implements OptionHandler, WeightedInstancesH
         return tmp_error / 2;
     }
 
-    public void buildClassifier(Instances instances) throws Exception {
+    public void buildClassifier(Instances _instances) throws Exception {
+        Instances instances;
+        getCapabilities().testWithFail(_instances);
+
+        nominalToBinary.setInputFormat(_instances);
+        instances = Filter.useFilter(_instances, nominalToBinary);
+        normalize.setInputFormat(instances);
+        instances = Filter.useFilter(instances, normalize);
+
         int i = 0; int it = 0;
         int sumInstances = instances.numInstances();
         int sumAttributes = instances.numAttributes();
@@ -88,7 +93,14 @@ public class PTR extends Classifier implements OptionHandler, WeightedInstancesH
     }
 
 
-    public double classifyInstance(Instance instance){
+    public double classifyInstance(Instance _instance) throws Exception{
+        Instance instance;
+
+        nominalToBinary.input(_instance);
+        instance = nominalToBinary.output();
+        normalize.input(instance);
+        instance = normalize.output();
+
         int numAttr = instance.numAttributes();
         double sigma = 0;
         for (int i = 0; i < numAttr; i++){
@@ -114,7 +126,6 @@ public class PTR extends Classifier implements OptionHandler, WeightedInstancesH
     }
 
 
-/*
     public Enumeration listOptions() {
 
         Vector newVector = new Vector(14);
@@ -137,7 +148,7 @@ public class PTR extends Classifier implements OptionHandler, WeightedInstancesH
                 "L", 1,"-L <learning rate>"));
 
         return newVector.elements();
-    }*/
+    }
 
     public String maxIterationTipText() {
         return "Maximum Iteration that is used by PTR. Default = 30";
@@ -187,7 +198,7 @@ public class PTR extends Classifier implements OptionHandler, WeightedInstancesH
         return maxIteration;
     }
 
-    /* OPSI UNTUK KUSTOMISASI
+    // OPSI UNTUK KUSTOMISASI
     public void setOptions(String[] options) throws Exception {
         String learningString = Utils.getOption('L', options);
         if (learningString.length() != 0) {
@@ -234,7 +245,7 @@ public class PTR extends Classifier implements OptionHandler, WeightedInstancesH
           options[current++] = "";
         }
         return options;
-    }*/
+    }
 
 
     public Capabilities getCapabilities() {
