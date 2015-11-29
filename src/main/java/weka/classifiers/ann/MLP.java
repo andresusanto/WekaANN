@@ -5,6 +5,7 @@
  *    Implementation of MULTI LAYER PERCEPTRON Classifier Algorithm
  */
 
+
 package weka.classifiers.ann;
 
 import weka.classifiers.Classifier;
@@ -29,6 +30,7 @@ public class MLP extends Classifier implements OptionHandler, WeightedInstancesH
     private HashMap<Node,Integer> inputIndex, outputIndex;
     private HashMap<Integer,HashMap<Node,Integer>> hiddenIndex;
 
+    private double momentum = 0.0;
     private float learningrate = 0.1f;
     private int maxIteration = 30;
     private int hiddenPerceptrons = 1;
@@ -217,7 +219,9 @@ public class MLP extends Classifier implements OptionHandler, WeightedInstancesH
         for(Node h : this.hidden.get(this.hidden.size()-1)){
             for(Links s : h.getForbundetTil()){
                 double v = s.getV();
-                s.setV(v + this.learningrate * h.getSenesteOutput() * error[this.outputIndex.get(s.getTil())]);
+                double p = s.getP();
+                s.setV(v + this.learningrate * h.getSenesteOutput() * error[this.outputIndex.get(s.getTil())] + momentum * p);
+                s.setP(this.learningrate * h.getSenesteOutput() * error[this.outputIndex.get(s.getTil())] + momentum * p);
             }
         }
         double[] oerror = error.clone();
@@ -242,8 +246,11 @@ public class MLP extends Classifier implements OptionHandler, WeightedInstancesH
             for(Node h : this.hidden.get(i-1)){
                 for(Links s : h.getForbundetTil()){
                     double v = s.getV();
+                    double p = s.getP();
+
                     int index = this.hiddenIndex.get(i).get(s.getTil());
-                    s.setV(v + this.learningrate * error[index] * h.getSenesteInput());
+                    s.setV(v + this.learningrate * error[index] * h.getSenesteInput() + momentum * p);
+                    s.setP(this.learningrate * error[index] * h.getSenesteInput() + momentum * p);
                 }
             }
         }
@@ -267,7 +274,9 @@ public class MLP extends Classifier implements OptionHandler, WeightedInstancesH
         for(Node i : this.input){
             for(Links s : i.getForbundetTil()){
                 double v = s.getV();
-                s.setV(v + this.learningrate * t[this.hiddenIndex.get(0).get(s.getTil())] * i.getSenesteInput());
+                double p = s.getP();
+                s.setV(v + this.learningrate * t[this.hiddenIndex.get(0).get(s.getTil())] * i.getSenesteInput() + momentum * p);
+                s.setP(this.learningrate * t[this.hiddenIndex.get(0).get(s.getTil())] * i.getSenesteInput() + momentum * p);
             }
         }
     }
@@ -378,6 +387,10 @@ public class MLP extends Classifier implements OptionHandler, WeightedInstancesH
         return "Initial weight. Input `a` to Random, input number to init with number";
     }
 
+    public String momentumTipText(){
+        return "Momentum that is used to update weight (to avoid local maxima). Enter numeric value (0.0 - 1.0)";
+    }
+
     public void setInitWeight(String a){
         if (a.equals("a")){
             initOption = 0;
@@ -390,6 +403,14 @@ public class MLP extends Classifier implements OptionHandler, WeightedInstancesH
     public String getInitWeight(){
         if (initOption == 0) return "a";
         return "" + initValue;
+    }
+
+    public void setMomentum(double a){
+        momentum = a;
+    }
+
+    public double getMomentum(){
+        return momentum;
     }
 
     public void setUseFilter(boolean a) {
