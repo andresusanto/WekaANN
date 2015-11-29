@@ -39,6 +39,7 @@ public class MLP extends Classifier implements OptionHandler, WeightedInstancesH
     private boolean useFilter = false;
     private int initOption = 0;
     private double initValue = 0.0;
+    private double deltaMSE = 0.0;
     ///////////////////////////////////////
     private NominalToBinary nominalToBinary = new NominalToBinary();
     private Normalize normalize = new Normalize();
@@ -136,7 +137,7 @@ public class MLP extends Classifier implements OptionHandler, WeightedInstancesH
 
         double curError = 1;
 
-        while (it < iterateTo && curError > 0) {
+        while (it < iterateTo && curError > deltaMSE) {
             double input[] = genInput(instances.instance(i));
             double target[] = nominalize(instances.instance(i).classValue());
 
@@ -389,6 +390,18 @@ public class MLP extends Classifier implements OptionHandler, WeightedInstancesH
 
     public String momentumTipText(){
         return "Momentum that is used to update weight (to avoid local maxima). Enter numeric value (0.0 - 1.0)";
+    }
+
+    public String deltaMseTipText(){
+        return "Minimum Square Error to continue training (Enter value > 0)";
+    }
+
+    public void setDeltaMse(double a){
+        deltaMSE = a;
+    }
+
+    public  double getDeltaMse(){
+        return  deltaMSE;
     }
 
     public void setInitWeight(String a){
