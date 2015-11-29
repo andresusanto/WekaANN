@@ -565,13 +565,53 @@ public class MLP extends Classifier implements OptionHandler, WeightedInstancesH
         builder.append("   OUTPUT NODE : ");builder.append(outPerceptron);builder.append("\n\n");
 
 
+        builder.append("INPUT LAYER WEIGHTS : \n");
+        for (int i = 0 ; i < input.size(); i++){
+            ArrayList<Links> links = input.get(i).getForbundetTil();
 
-        for (int i = 0 ; i < weights.length; i++){
-            builder.append("   W[");
-            builder.append(i);
-            builder.append("] = ");
-            builder.append(weights[i]);
-            builder.append("\n");
+            for (int j = 0 ; j < hiddenPerceptrons; j++){
+                builder.append("   W[");
+                builder.append(i);
+                builder.append(",");
+                builder.append(j);
+                builder.append("] = ");
+                builder.append(links.get(j).getV());
+                builder.append("\n");
+            }
+        }
+
+        builder.append("HIDDEN LAYERS WEIGHTS : \n");
+        for (int l = 0; l < hiddenLayers; l++){
+            builder.append("  LAYER ");
+            builder.append((l + 1));
+            builder.append(": \n");
+
+            for (int i = 0 ; i < hiddenPerceptrons; i++){
+                ArrayList<Links> links = hidden.get(l).get(i).getForbundetTil();
+
+                if (l == hiddenLayers - 1){
+                    for (int j = 0 ; j < outPerceptron; j++){
+                        builder.append("     W[");
+                        builder.append(i);
+                        builder.append(",");
+                        builder.append(j);
+                        builder.append("] = ");
+                        builder.append(links.get(j).getV());
+                        builder.append("\n");
+                    }
+                }else{
+                    for (int j = 0 ; j < hiddenPerceptrons; j++){
+                        builder.append("     W[");
+                        builder.append(i);
+                        builder.append(",");
+                        builder.append(j);
+                        builder.append("] = ");
+                        builder.append(links.get(j).getV());
+                        builder.append("\n");
+                    }
+                }
+
+            }
         }
 
         return builder.toString();

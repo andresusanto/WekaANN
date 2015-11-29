@@ -80,24 +80,24 @@ public class DR extends Classifier implements OptionHandler, WeightedInstancesHa
                 double out = classify(instances.instance(i));
                 double correction = instances.instance(i).classValue() - out;
 
-                System.out.printf("Iterasi %d, data %d: (TARGET: %f, OUT: %f)\n", it, i, instances.instance(i).classValue(), out);
-                System.out.printf("   NEW WEIGHT: ");
+                //System.out.printf("Iterasi %d, data %d: (TARGET: %f, OUT: %f)\n", it, i, instances.instance(i).classValue(), out);
+                //System.out.printf("   NEW WEIGHT: ");
 
                 for (int j = 0; j < sumAttributes; j++){
                     if (j != instances.instance(i).classIndex()){
                         if (mode == 1) {
                             weights[j] = weights[j] + (float) (correction * instances.instance(i).value(j) * learningRate);
-                            System.out.printf(" %f,", weights[j]);
+                            //System.out.printf(" %f,", weights[j]);
                         }else{
                             tmp_weights[j] = tmp_weights[j] + (float) (correction * instances.instance(i).value(j) * learningRate);
                         }
                     }
                 }
                 curError = calculateError(instances);
-                System.out.printf("\n   Error: %f\n\n", curError);
+                //System.out.printf("\n   Error: %f\n\n", curError);
 
                 if (i == sumInstances - 1 && mode == 0){
-                    System.out.printf("   UPDATE WEIGHT: ");
+                    //System.out.printf("   UPDATE WEIGHT: ");
 
                     for (int j = 0; j < sumAttributes; j++){
                         if (j != instances.instance(i).classIndex()){
@@ -323,11 +323,13 @@ public class DR extends Classifier implements OptionHandler, WeightedInstancesHa
         builder.append("----------------\n");
 
         for (int i = 0 ; i < weights.length; i++){
-            builder.append("   W[");
-            builder.append(i);
-            builder.append("] = ");
-            builder.append(weights[i]);
-            builder.append("\n");
+            if (weights[i] != 0) {
+                builder.append("   W[");
+                builder.append(i);
+                builder.append("] = ");
+                builder.append(weights[i]);
+                builder.append("\n");
+            }
         }
 
 		return builder.toString();
