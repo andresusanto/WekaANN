@@ -8,14 +8,7 @@
 package weka.classifiers.ann;
 
 import weka.classifiers.Classifier;
-import weka.core.Capabilities;
-import weka.core.Instance;
-import weka.core.Instances;
-import weka.core.Option;
-import weka.core.OptionHandler;
-import weka.core.RevisionUtils;
-import weka.core.Utils;
-import weka.core.WeightedInstancesHandler;
+import weka.core.*;
 import weka.core.Capabilities.Capability;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.NominalToBinary;
@@ -30,8 +23,9 @@ public class MLP extends Classifier implements OptionHandler, WeightedInstancesH
     private int maxIteration = 30;
     private double working_h[];
     private float weights[][];
-    private float weights_out[];
+    private float weights_out[][];
     private int hiddenPerceptrons = 1;
+    private int outPerceptron = 1;
     ///////////////////////////////////////
     private NominalToBinary nominalToBinary = new NominalToBinary();
     private Normalize normalize = new Normalize();
@@ -41,6 +35,19 @@ public class MLP extends Classifier implements OptionHandler, WeightedInstancesH
     // untuk serialisasi
     private static final long serialVersionUID = -5990607817048210779L;
 
+    private double[] nominalize(double in){
+        double out[] = new double[outPerceptron];
+
+        if (outPerceptron == 1){
+            out[0] = in;
+        }else{
+            for (int i = 0; i < outPerceptron; i++){
+                out[i] = 0.01;
+            }
+            out[(int)in] = 0.99;
+        }
+        return out;
+    }
 
     private double calculateError(Instances instances) throws Exception{
         double tmp_error = 0;
@@ -64,36 +71,86 @@ public class MLP extends Classifier implements OptionHandler, WeightedInstancesH
         int i = 0; int it = 0;
         int sumInstances = instances.numInstances();
         int sumAttributes = instances.numAttributes();
+        int iterateTo = maxIteration * sumInstances;
 
         if (sumInstances > 0) {
-            working_h = new double[hiddenPerceptrons];
-            weights_out = new float[hiddenPerceptrons];
             weights = new float[hiddenPerceptrons][];
             for (int k = 0 ; k < hiddenPerceptrons; k++)
                 weights[k] = new float[sumAttributes];
 
+            if (instances.classAttribute().isNominal())
+                outPerceptron = instances.classAttribute().numValues();
+
+            System.out.printf("NUM OUT: %d\n", outPerceptron);
+
+            weights_out = new float[outPerceptron][];
+            for (int j = 0; j < outPerceptron; j++)
+                weights_out[j] = new float[hiddenPerceptrons];
+
+
             double curError = 1;
 
-            while (it < maxIteration && curError > 0) {
+            while (it < iterateTo && curError > 0) {
+                double target[] = nominalize(instances.instance(i).classValue());
                 double out = classifyInstance(instances.instance(i));
+
 
                 //System.out.printf("Iterasi %d: (TARGET: %f, OUT: %f)\n", i, instances.instance(i).classValue(), out);
                 //System.out.printf("   NEW WEIGHT: ");
 
-                for (int k = 0 ; k < hiddenPerceptrons; k++){
-                    for (int j = 0 ; j < sumAttributes; j++){
+                double out_error[] = new double[outPerceptron];
+                double hidden_error[] = new double[hiddenPerceptrons];
+
+                for (int l = 0; l < outPerceptron; l++) {
+                    out_error[l] = sigma_out[l] * (1 - sigma_out[l]) * (target[l] - sigma_out[l]);
+                }
+
+                for (int k = 0; k < hiddenPerceptrons; k++) {
+                    double sig_error = 0;
+                    for (int l = 0; l < outPerceptron; l++) {
+                        sig_error += weights_out[l][k] * out_error[l];
+                    }
+                    hidden_error[k] = working_h[k] * (1 - working_h[k]) * sig_error;
+                }
+
+
+                for (int l = 0; l < outPerceptron; l++) {
+                    for(int j = 0; j < hiddenPerceptrons; j++){
+                        //System.out.printf("  --> O %d,%d  DELTA = %f \n", l, j, (learningRate * out_error[l] * working_h[j]));
+                        weights_out[l][j] += learningRate * out_error[l] * working_h[j];
+                    }
+                }
+
+                for(int k = 0; k < hiddenPerceptrons; k++){
+                    for (int j = 0; j < sumAttributes; j++) {
+                        //System.out.printf("  --> H %d,%d  DELTA = %f \n", k, j, (learningRate * hidden_error[k] * instances.instance(i).value(j)));
+                        weights[k][j] += learningRate * hidden_error[k] * instances.instance(i).value(j);
+                    }
+                }
+
+                /*
+                for (int k = 0; k < hiddenPerceptrons; k++) {
+                    for (int j = 0; j < sumAttributes; j++) {
                         if (j != instances.classIndex()) {
-                            double delta_in = -(instances.instance(i).classValue() - out) * out * (1.0f - out) * weights_out[k] * working_h[k]  * (1 - working_h[k]) * instances.instance(i).value(j);
+                            double delta_error = 0;
+                            for (int l = 0; l < outPerceptron; l++) {
+                                delta_error += (sigma_out[l] - target[l]) * sigma_out[l] * (1.0f - sigma_out[l]) * weights_out[l][k];
+                            }
+                            double delta_in = delta_error * working_h[k] * (1 - working_h[k]) * instances.instance(i).value(j);
                             weights[k][j] -= learningRate * delta_in;
 
-                            //System.out.printf("\n    W(%d,%d) = %f\n", k, j, weights[k][j]);
+                            //System.out.printf("\n    W(%d,%d) = %f, DELTA = %f \n", k, j, weights[k][j], delta_in);
                         }
                     }
 
-                    double delta = -(instances.instance(i).classValue() - out) * out * (1.0f-out) * working_h[k];
-                    weights_out[k] -= learningRate * delta;
-                    //System.out.printf("\n    W(%d,OUT) = %f\n", k, weights_out[k]);
-                }
+                    for (int l = 0; l < outPerceptron; l++) {
+                        double delta = (sigma_out[l] - target[l]) * sigma_out[l] * (1.0f - sigma_out[l]) * working_h[k];
+                        weights_out[l][k] -= learningRate * delta;
+                        //System.out.printf("\n    W(%d,OUT %d) = " + weights_out[l][k] + " (%f - %f) DELTA = %f \n", k, l, target[l], sigma_out[l], delta);
+                    }
+
+
+                }*/
 
                 curError = calculateError(instances);
                 //System.out.printf("\n   Error: %f\n\n", curError);
@@ -108,6 +165,8 @@ public class MLP extends Classifier implements OptionHandler, WeightedInstancesH
         return (1/( 1 + Math.pow(Math.E,(-1* in))));
     }
 
+    private double sigma_out[];
+
     public double classifyInstance(Instance _instance) throws Exception{
         Instance instance;
 
@@ -117,7 +176,8 @@ public class MLP extends Classifier implements OptionHandler, WeightedInstancesH
         instance = normalize.output();
 
         int numAttr = instance.numAttributes();
-        double sigma_out = 0;
+        sigma_out = new double[outPerceptron];
+        working_h = new double[hiddenPerceptrons];
 
         for ( int i = 0 ; i < hiddenPerceptrons ; i++){
             double sigma = 0;
@@ -127,11 +187,28 @@ public class MLP extends Classifier implements OptionHandler, WeightedInstancesH
             }
 
             working_h[i] = sigmoid(sigma);
-            sigma_out += weights_out[i] * working_h[i];
+
+            for (int l = 0; l < outPerceptron ; l++){
+                sigma_out[l] += weights_out[l][i] * working_h[i];
+            }
         }
 
-        return sigmoid(sigma_out);
+        if (outPerceptron > 1){
+            int maxIndex = 0; double maxVal = 0;
+            for (int l = 0; l < outPerceptron ; l++){
+                sigma_out[l] = sigmoid(sigma_out[l]);
+                //System.out.printf("    --> OUT %d = %f \n", l, sigma_out[l]);
 
+                if (l == 0 || maxVal < sigma_out[l]){
+                    maxIndex = l;
+                    maxVal = sigma_out[l];
+                }
+            }
+
+            return  maxIndex;
+        }else {
+            return sigmoid(sigma_out[0]);
+        }
     }
 
 
