@@ -28,25 +28,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MLP.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MLP.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/ann/MLP.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7054886" vertical-offset="6154" max-vertical-offset="9197">
-              <caret line="403" column="25" selection-start-line="403" selection-start-column="25" selection-end-line="403" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1043" max-vertical-offset="9061">
+              <caret line="558" column="5" selection-start-line="558" selection-start-column="5" selection-end-line="558" selection-end-column="5" />
               <folding>
                 <element signature="e#0#17921#0" expanded="true" />
                 <element signature="imports" expanded="true" />
-                <element signature="e#13424#13425#0" expanded="true" />
-                <element signature="e#13508#13509#0" expanded="true" />
-                <element signature="e#13548#13549#0" expanded="true" />
-                <element signature="e#13576#13577#0" expanded="true" />
                 <element signature="e#13611#13612#0" expanded="true" />
                 <element signature="e#13643#13644#0" expanded="true" />
-                <element signature="e#14007#14008#0" expanded="true" />
-                <element signature="e#14035#14036#0" expanded="true" />
-                <element signature="e#14069#14070#0" expanded="true" />
-                <element signature="e#14100#14101#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DR.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/ann/DR.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.78092784" vertical-offset="4239" max-vertical-offset="5185">
+              <caret line="329" column="30" selection-start-line="329" selection-start-column="30" selection-end-line="329" selection-end-column="30" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -54,7 +56,7 @@
       <file leaf-file-name="Node.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/ann/engine/Node.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1190">
+            <state vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="1190">
               <caret line="55" column="32" selection-start-line="55" selection-start-column="32" selection-end-line="55" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -66,7 +68,7 @@
       <file leaf-file-name="Links.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/ann/engine/Links.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="646">
+            <state vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="646">
               <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
               <folding>
                 <element signature="e#272#273#0" expanded="true" />
@@ -89,7 +91,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/java/weka/classifiers/rules/ZeroR.java" />
-        <option value="$PROJECT_DIR$/src/main/java/weka/classifiers/ann/DR.java" />
         <option value="$PROJECT_DIR$/src/main/java/weka/classifiers/ann/PTR.java" />
         <option value="$PROJECT_DIR$/src/main/java/weka/classifiers/ann/engine/BPE.java" />
         <option value="$PROJECT_DIR$/src/main/java/weka/classifiers/ann/engine/MultiLayerPerceptron.java" />
@@ -97,6 +98,7 @@
         <option value="$PROJECT_DIR$/src/main/java/weka/classifiers/ann/engine/Network.java" />
         <option value="$PROJECT_DIR$/src/main/java/weka/classifiers/ann/engine/Links.java" />
         <option value="$PROJECT_DIR$/src/main/java/weka/classifiers/ann/MLP.java" />
+        <option value="$PROJECT_DIR$/src/main/java/weka/classifiers/ann/DR.java" />
       </list>
     </option>
   </component>
@@ -134,6 +136,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -365,7 +368,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -644,11 +646,13 @@
       <workItem from="1448789938021" duration="10536000" />
       <workItem from="1448801085469" duration="1000" />
       <workItem from="1448805763831" duration="2181000" />
+      <workItem from="1448808118634" duration="43000" />
+      <workItem from="1448812315893" duration="312000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53384000" />
+    <option name="totallyTimeSpent" value="53739000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="936" extended-state="6" />
@@ -705,21 +709,76 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/ann/MLP.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9265">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9061">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#17921#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#13424#13425#0" expanded="true" />
-            <element signature="e#13508#13509#0" expanded="true" />
-            <element signature="e#13548#13549#0" expanded="true" />
-            <element signature="e#13576#13577#0" expanded="true" />
             <element signature="e#13611#13612#0" expanded="true" />
             <element signature="e#13643#13644#0" expanded="true" />
-            <element signature="e#14007#14008#0" expanded="true" />
-            <element signature="e#14035#14036#0" expanded="true" />
-            <element signature="e#14069#14070#0" expanded="true" />
-            <element signature="e#14100#14101#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/ann/engine/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="1190">
+          <caret line="55" column="32" selection-start-line="55" selection-start-column="32" selection-end-line="55" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/ann/engine/Links.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="646">
+          <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+          <folding>
+            <element signature="e#272#273#0" expanded="true" />
+            <element signature="e#298#299#0" expanded="true" />
+            <element signature="e#325#326#0" expanded="true" />
+            <element signature="e#354#355#0" expanded="true" />
+            <element signature="e#379#380#0" expanded="true" />
+            <element signature="e#399#400#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/ann/MLP.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="6154" max-vertical-offset="9197">
+          <caret line="403" column="25" selection-start-line="403" selection-start-column="25" selection-end-line="403" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#17921#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#13611#13612#0" expanded="true" />
+            <element signature="e#13643#13644#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/ann/engine/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="1190">
+          <caret line="55" column="32" selection-start-line="55" selection-start-column="32" selection-end-line="55" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/ann/engine/Links.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="646">
+          <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+          <folding>
+            <element signature="e#272#273#0" expanded="true" />
+            <element signature="e#298#299#0" expanded="true" />
+            <element signature="e#325#326#0" expanded="true" />
+            <element signature="e#354#355#0" expanded="true" />
+            <element signature="e#379#380#0" expanded="true" />
+            <element signature="e#399#400#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -731,16 +790,21 @@
           <folding>
             <element signature="e#0#17921#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#13424#13425#0" expanded="true" />
-            <element signature="e#13508#13509#0" expanded="true" />
-            <element signature="e#13548#13549#0" expanded="true" />
-            <element signature="e#13576#13577#0" expanded="true" />
             <element signature="e#13611#13612#0" expanded="true" />
             <element signature="e#13643#13644#0" expanded="true" />
-            <element signature="e#14007#14008#0" expanded="true" />
-            <element signature="e#14035#14036#0" expanded="true" />
-            <element signature="e#14069#14070#0" expanded="true" />
-            <element signature="e#14100#14101#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/ann/MLP.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9265">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#17921#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#13611#13612#0" expanded="true" />
+            <element signature="e#13643#13644#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -752,16 +816,8 @@
           <folding>
             <element signature="e#0#17921#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#13424#13425#0" expanded="true" />
-            <element signature="e#13508#13509#0" expanded="true" />
-            <element signature="e#13548#13549#0" expanded="true" />
-            <element signature="e#13576#13577#0" expanded="true" />
             <element signature="e#13611#13612#0" expanded="true" />
             <element signature="e#13643#13644#0" expanded="true" />
-            <element signature="e#14007#14008#0" expanded="true" />
-            <element signature="e#14035#14036#0" expanded="true" />
-            <element signature="e#14069#14070#0" expanded="true" />
-            <element signature="e#14100#14101#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -773,16 +829,8 @@
           <folding>
             <element signature="e#0#17921#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#13424#13425#0" expanded="true" />
-            <element signature="e#13508#13509#0" expanded="true" />
-            <element signature="e#13548#13549#0" expanded="true" />
-            <element signature="e#13576#13577#0" expanded="true" />
             <element signature="e#13611#13612#0" expanded="true" />
             <element signature="e#13643#13644#0" expanded="true" />
-            <element signature="e#14007#14008#0" expanded="true" />
-            <element signature="e#14035#14036#0" expanded="true" />
-            <element signature="e#14069#14070#0" expanded="true" />
-            <element signature="e#14100#14101#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -794,16 +842,8 @@
           <folding>
             <element signature="e#0#17921#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#13424#13425#0" expanded="true" />
-            <element signature="e#13508#13509#0" expanded="true" />
-            <element signature="e#13548#13549#0" expanded="true" />
-            <element signature="e#13576#13577#0" expanded="true" />
             <element signature="e#13611#13612#0" expanded="true" />
             <element signature="e#13643#13644#0" expanded="true" />
-            <element signature="e#14007#14008#0" expanded="true" />
-            <element signature="e#14035#14036#0" expanded="true" />
-            <element signature="e#14069#14070#0" expanded="true" />
-            <element signature="e#14100#14101#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -837,16 +877,8 @@
           <folding>
             <element signature="e#0#17921#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#13424#13425#0" expanded="true" />
-            <element signature="e#13508#13509#0" expanded="true" />
-            <element signature="e#13548#13549#0" expanded="true" />
-            <element signature="e#13576#13577#0" expanded="true" />
             <element signature="e#13611#13612#0" expanded="true" />
             <element signature="e#13643#13644#0" expanded="true" />
-            <element signature="e#14007#14008#0" expanded="true" />
-            <element signature="e#14035#14036#0" expanded="true" />
-            <element signature="e#14069#14070#0" expanded="true" />
-            <element signature="e#14100#14101#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -880,16 +912,8 @@
           <folding>
             <element signature="e#0#17921#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#13424#13425#0" expanded="true" />
-            <element signature="e#13508#13509#0" expanded="true" />
-            <element signature="e#13548#13549#0" expanded="true" />
-            <element signature="e#13576#13577#0" expanded="true" />
             <element signature="e#13611#13612#0" expanded="true" />
             <element signature="e#13643#13644#0" expanded="true" />
-            <element signature="e#14007#14008#0" expanded="true" />
-            <element signature="e#14035#14036#0" expanded="true" />
-            <element signature="e#14069#14070#0" expanded="true" />
-            <element signature="e#14100#14101#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -979,22 +1003,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/ann/MLP.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7054886" vertical-offset="6154" max-vertical-offset="9197">
-          <caret line="403" column="25" selection-start-line="403" selection-start-column="25" selection-end-line="403" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1043" max-vertical-offset="9061">
+          <caret line="558" column="5" selection-start-line="558" selection-start-column="5" selection-end-line="558" selection-end-column="5" />
           <folding>
             <element signature="e#0#17921#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#13424#13425#0" expanded="true" />
-            <element signature="e#13508#13509#0" expanded="true" />
-            <element signature="e#13548#13549#0" expanded="true" />
-            <element signature="e#13576#13577#0" expanded="true" />
             <element signature="e#13611#13612#0" expanded="true" />
             <element signature="e#13643#13644#0" expanded="true" />
-            <element signature="e#14007#14008#0" expanded="true" />
-            <element signature="e#14035#14036#0" expanded="true" />
-            <element signature="e#14069#14070#0" expanded="true" />
-            <element signature="e#14100#14101#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/ann/DR.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.78092784" vertical-offset="4239" max-vertical-offset="5185">
+          <caret line="329" column="30" selection-start-line="329" selection-start-column="30" selection-end-line="329" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>

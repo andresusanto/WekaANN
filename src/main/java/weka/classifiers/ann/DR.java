@@ -318,7 +318,19 @@ public class DR extends Classifier implements OptionHandler, WeightedInstancesHa
     }
   
 	public String toString() {
-		return "OUTPUT MODEL";
+        StringBuilder builder = new StringBuilder();
+        builder.append("DELTA RULE MODEL\n");
+        builder.append("----------------\n");
+
+        for (int i = 0 ; i < weights.length; i++){
+            builder.append("   W[");
+            builder.append(i);
+            builder.append("] = ");
+            builder.append(weights[i]);
+            builder.append("\n");
+        }
+
+		return builder.toString();
 	}
 
   
