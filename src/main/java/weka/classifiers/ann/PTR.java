@@ -277,7 +277,19 @@ public class PTR extends Classifier implements OptionHandler, WeightedInstancesH
     }
   
 	public String toString() {
-		return "OUTPUT MODEL";
+        StringBuilder builder = new StringBuilder();
+        builder.append("PERCEPTRON TRAINING RULE MODEL\n");
+        builder.append("------------------------------\n");
+
+        for (int i = 0 ; i < weights.length; i++){
+            builder.append("   W[");
+            builder.append(i);
+            builder.append("] = ");
+            builder.append(weights[i]);
+            builder.append("\n");
+        }
+
+        return builder.toString();
 	}
 
   

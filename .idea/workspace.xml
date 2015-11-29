@@ -31,7 +31,7 @@
       <file leaf-file-name="MLP.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/ann/MLP.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1043" max-vertical-offset="9061">
+            <state vertical-scroll-proportion="0.0" vertical-offset="4001" max-vertical-offset="9061">
               <caret line="558" column="5" selection-start-line="558" selection-start-column="5" selection-end-line="558" selection-end-column="5" />
               <folding>
                 <element signature="e#0#17921#0" expanded="true" />
@@ -43,11 +43,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DR.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PTR.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/ann/PTR.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.8685567" vertical-offset="3712" max-vertical-offset="4488">
+              <caret line="306" column="0" selection-start-line="306" selection-start-column="0" selection-end-line="306" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DR.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/ann/DR.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.78092784" vertical-offset="4239" max-vertical-offset="5185">
-              <caret line="329" column="30" selection-start-line="329" selection-start-column="30" selection-end-line="329" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="4239" max-vertical-offset="5185">
+              <caret line="320" column="8" selection-start-line="320" selection-start-column="8" selection-end-line="332" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -91,7 +101,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/java/weka/classifiers/rules/ZeroR.java" />
-        <option value="$PROJECT_DIR$/src/main/java/weka/classifiers/ann/PTR.java" />
         <option value="$PROJECT_DIR$/src/main/java/weka/classifiers/ann/engine/BPE.java" />
         <option value="$PROJECT_DIR$/src/main/java/weka/classifiers/ann/engine/MultiLayerPerceptron.java" />
         <option value="$PROJECT_DIR$/src/main/java/weka/classifiers/ann/engine/Node.java" />
@@ -99,6 +108,7 @@
         <option value="$PROJECT_DIR$/src/main/java/weka/classifiers/ann/engine/Links.java" />
         <option value="$PROJECT_DIR$/src/main/java/weka/classifiers/ann/MLP.java" />
         <option value="$PROJECT_DIR$/src/main/java/weka/classifiers/ann/DR.java" />
+        <option value="$PROJECT_DIR$/src/main/java/weka/classifiers/ann/PTR.java" />
       </list>
     </option>
   </component>
@@ -647,12 +657,12 @@
       <workItem from="1448801085469" duration="1000" />
       <workItem from="1448805763831" duration="2181000" />
       <workItem from="1448808118634" duration="43000" />
-      <workItem from="1448812315893" duration="312000" />
+      <workItem from="1448812315893" duration="372000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53739000" />
+    <option name="totallyTimeSpent" value="53799000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="936" extended-state="6" />
@@ -852,14 +862,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4913">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#9034#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#6114#6115#0" expanded="false" />
-            <element signature="e#6152#6153#0" expanded="false" />
-            <element signature="e#6345#6346#0" expanded="false" />
-            <element signature="e#6380#6381#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -887,14 +890,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6171">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#9034#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#6114#6115#0" expanded="false" />
-            <element signature="e#6152#6153#0" expanded="false" />
-            <element signature="e#6345#6346#0" expanded="false" />
-            <element signature="e#6380#6381#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -922,14 +918,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5542">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#9034#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#6114#6115#0" expanded="false" />
-            <element signature="e#6152#6153#0" expanded="false" />
-            <element signature="e#6345#6346#0" expanded="false" />
-            <element signature="e#6380#6381#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -951,21 +940,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.29585007" vertical-offset="2193" max-vertical-offset="3910">
           <caret line="173" column="2" selection-start-line="173" selection-start-column="2" selection-end-line="190" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/ann/PTR.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44712183" vertical-offset="193" max-vertical-offset="4658">
-          <caret line="31" column="34" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#9034#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#6114#6115#0" expanded="false" />
-            <element signature="e#6152#6153#0" expanded="false" />
-            <element signature="e#6345#6346#0" expanded="false" />
-            <element signature="e#6380#6381#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1016,8 +990,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/ann/DR.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.78092784" vertical-offset="4239" max-vertical-offset="5185">
-          <caret line="329" column="30" selection-start-line="329" selection-start-column="30" selection-end-line="329" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="4239" max-vertical-offset="5185">
+          <caret line="320" column="8" selection-start-line="320" selection-start-column="8" selection-end-line="332" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/weka/classifiers/ann/PTR.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8685567" vertical-offset="3712" max-vertical-offset="4488">
+          <caret line="306" column="0" selection-start-line="306" selection-start-column="0" selection-end-line="306" selection-end-column="0" />
           <folding />
         </state>
       </provider>
