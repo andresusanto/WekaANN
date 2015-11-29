@@ -555,7 +555,26 @@ public class MLP extends Classifier implements OptionHandler, WeightedInstancesH
 
 
     public String toString() {
-        return "OUTPUT MODEL";
+        StringBuilder builder = new StringBuilder();
+        builder.append("MULTI LAYER PERCEPTRON\n");
+        builder.append("----------------------\n");
+        builder.append("Configuration : \n");
+        builder.append("   INPUT NODE : "); builder.append(input.size());builder.append("\n");
+        builder.append("   HIDDEN LAYERS : ");builder.append(hiddenLayers);builder.append("\n");
+        builder.append("   HIDDEN NODE EACH LAYER : ");builder.append(hiddenPerceptrons);builder.append("\n");
+        builder.append("   OUTPUT NODE : ");builder.append(outPerceptron);builder.append("\n\n");
+
+
+
+        for (int i = 0 ; i < weights.length; i++){
+            builder.append("   W[");
+            builder.append(i);
+            builder.append("] = ");
+            builder.append(weights[i]);
+            builder.append("\n");
+        }
+
+        return builder.toString();
     }
 
 
